@@ -13,7 +13,7 @@ public class TagRepositoryImpl implements TagRepository {
     }
 
     @Override
-    public void addTag(Tag category) {
-        Database.tags.add(category);
+    public void addTag(Tag tag) {
+        Database.tags.add(tag);
     }
 }

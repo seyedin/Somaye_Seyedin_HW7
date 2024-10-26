@@ -6,8 +6,12 @@ import articlesystem.model.enums.ArticleStatus;
 import articlesystem.service.*;
 import articlesystem.service.impl.*;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Date;
 
 public class Main {
 
@@ -28,14 +32,70 @@ public class Main {
     public static void setupSampleData() {
         Category cat1 = new Category(1, "Technology", "Articles about technology.");
         Category cat2 = new Category(2, "Science", "Articles about science.");
+        Category cat3 = new Category(3, "Art", "Articles about art.");
         categoryService.addCategory(cat1);
         categoryService.addCategory(cat2);
+        categoryService.addCategory(cat3);
 
-        moderatorService.addModerator(new Moderator(1, "admin", "admin123"));
+
+        Moderator moderator = new Moderator(1, "admin", "admin123");
+        moderatorService.addModerator(moderator);
 
         tagService.addTag(new Tag(1, "Tech"));
         tagService.addTag(new Tag(2, "Science"));
 
+        List<Article> articles = new ArrayList<>();
+        Article article1 = new Article(11,"Art", "Art is Art", "Art is paint", cat3);
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime yesterday = now.minusHours(24);
+        Date date = Date.from(yesterday.atZone(ZoneId.systemDefault()).toInstant());// تبدیل LocalDateTime به Date
+        article1.setCreateDate(date);
+        article1.setLastUpdateDate(date);
+        article1.setPublishDate(date);
+        article1.setStatus(ArticleStatus.APPROVED);
+        article1.setPublished(true);
+        articles.add(article1);
+
+        Article article2 = new Article(22,"Math", "Math is Math", "MAth is number", cat2);
+        LocalDateTime oneWeekAgo = now.minusWeeks(1);
+        Date dateOneWeekAgo = Date.from(oneWeekAgo.atZone(ZoneId.systemDefault()).toInstant());// تبدیل LocalDateTime به Date
+        article2.setCreateDate(dateOneWeekAgo);
+        article2.setLastUpdateDate(dateOneWeekAgo);
+        article2.setPublishDate(dateOneWeekAgo);
+        article2.setStatus(ArticleStatus.APPROVED);
+        article2.setPublished(true);
+        articles.add(article2);
+
+        Article article3 = new Article(33,"Java", "Java is Java", "Java is a kind of programming language", cat1);
+        LocalDateTime oneMonthAgo = now.minusMonths(1);
+        Date dateOneMonthAgo = Date.from(oneMonthAgo.atZone(ZoneId.systemDefault()).toInstant());// تبدیل LocalDateTime به Date
+        article3.setCreateDate(dateOneMonthAgo);
+        article3.setLastUpdateDate(dateOneMonthAgo);
+        article3.setPublishDate(dateOneMonthAgo);
+        article3.setStatus(ArticleStatus.APPROVED);
+        article3.setPublished(true);
+        articles.add(article3);
+
+        Article article4 = new Article(44,"C++", "C++ is C++", "C++ is a kind of programming language", cat1);
+        LocalDateTime sixMonthAgo = now.minusMonths(6);
+        Date dateSixMonthAgo = Date.from(sixMonthAgo.atZone(ZoneId.systemDefault()).toInstant());// تبدیل LocalDateTime به Date
+        article4.setCreateDate(dateSixMonthAgo);
+        article4.setLastUpdateDate(dateSixMonthAgo);
+        article4.setPublishDate(dateSixMonthAgo);
+        article4.setStatus(ArticleStatus.APPROVED);
+        article4.setPublished(true);
+        articles.add(article4);
+
+        Article article5 = new Article(55,"PHP", "PHP is PHP", "PHP is a kind of programming language", cat1);
+        LocalDateTime oneYearAgo = now.minusYears(1);
+        Date dateOneYearAgo = Date.from(oneYearAgo.atZone(ZoneId.systemDefault()).toInstant());// تبدیل LocalDateTime به Date
+        article5.setCreateDate(dateOneYearAgo);
+        article5.setLastUpdateDate(dateOneYearAgo);
+        article5.setPublishDate(dateOneYearAgo);
+        article5.setStatus(ArticleStatus.APPROVED);
+        article5.setPublished(true);
+        articles.add(article5);
+        articleService.addArticles(articles);
     }
 
     private static void startMenu() {

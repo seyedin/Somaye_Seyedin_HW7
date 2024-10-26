@@ -16,10 +16,17 @@ public class Author extends User {
     }
 
     public void viewArticles(List<Article> articles) {
+        int count = 0;
         for (Article article : articles) {
             if (article.isPublished()) {
-                System.out.println("Title: " + article.getTitle() + ", Brief: " + article.getBrief());
-                System.out.println("Create date: " + article.getCreateDate() + ", Publish Date: " + article.getPublishDate());
+                count++;
+                System.out.println(count+"- " + "Title: " + article.getTitle() + ", Brief: " + article.getBrief());
+                System.out.println("Create date: " + article.getCreateDate());
+                System.out.println("Publish Date: " + article.getPublishDate());
+                if (article.getLastUpdateDate() != null) {
+                    System.out.println("Last update date: " + article.getLastUpdateDate());
+                }
+                System.out.println("======================================");
             }
         }
     }

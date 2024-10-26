@@ -26,4 +26,9 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         }
         return null;
     }
+
+    @Override
+    public void addArticles(List<Article> articles) {
+        Database.articles.addAll(articles);
+    }
 }

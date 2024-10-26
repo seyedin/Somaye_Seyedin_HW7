@@ -12,4 +12,7 @@ public interface ArticleService {
     List<Article> findAllArticles();
 
     Article findArticleById(int id);
+
+    void addArticles(List<Article> articles);
+
 }

@@ -15,8 +15,8 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public void addTag(Tag category) {
-        tagRepository.addTag(category);
+    public void addTag(Tag tag) {
+        tagRepository.addTag(tag);
     }
 
     @Override

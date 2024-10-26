@@ -9,4 +9,6 @@ public interface ArticleRepository {
     void addArticle(Article article);
 
     Article findArticleById(int id);
+
+    void addArticles(List<Article> articles);
 }
