@@ -2,6 +2,8 @@ package articlesystem.model;
 
 import articlesystem.model.enums.ArticleStatus;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Moderator extends User {
@@ -13,7 +15,7 @@ public class Moderator extends User {
         if (article != null) {
             article.setStatus(ArticleStatus.APPROVED);
             article.setPublished(true);
-            article.setPublishDate(new Date());
+            article.setPublishDate(LocalDate.now());
             System.out.println("Article approved");
         }
     }

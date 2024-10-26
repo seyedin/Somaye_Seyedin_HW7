@@ -3,8 +3,9 @@ package articlesystem.model;
 import articlesystem.model.enums.ArticleStatus;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -15,10 +16,10 @@ public class Article {
     private String title;
     private String brief;
     private String content;
-    private Date createDate;
+    private LocalDate createDate;
     private boolean isPublished;
-    private Date lastUpdateDate;
-    private Date publishDate;
+    private LocalDate lastUpdateDate;
+    private LocalDate publishDate;
     private ArticleStatus status;
     private Category category;
     private List<Tag> tags;
@@ -28,7 +29,7 @@ public class Article {
         this.title = title;
         this.brief = brief;
         this.content = content;
-        this.createDate = new Date();
+        this.createDate = LocalDate.now();
         this.isPublished = false;
         this.status = ArticleStatus.DRAFT;
         this.category = category;

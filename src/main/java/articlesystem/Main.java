@@ -5,13 +5,10 @@ import articlesystem.model.*;
 import articlesystem.model.enums.ArticleStatus;
 import articlesystem.service.*;
 import articlesystem.service.impl.*;
-
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Date;
 
 public class Main {
 
@@ -45,10 +42,9 @@ public class Main {
         tagService.addTag(new Tag(2, "Science"));
 
         List<Article> articles = new ArrayList<>();
-        Article article1 = new Article(11,"Art", "Art is Art", "Art is paint", cat3);
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime yesterday = now.minusHours(24);
-        Date date = Date.from(yesterday.atZone(ZoneId.systemDefault()).toInstant());// تبدیل LocalDateTime به Date
+        Article article1 = new Article(11, "Art", "Art is Art", "Art is paint", cat3);
+        LocalDate now = LocalDate.now();
+        LocalDate date = now.minusDays(1);
         article1.setCreateDate(date);
         article1.setLastUpdateDate(date);
         article1.setPublishDate(date);
@@ -56,9 +52,8 @@ public class Main {
         article1.setPublished(true);
         articles.add(article1);
 
-        Article article2 = new Article(22,"Math", "Math is Math", "MAth is number", cat2);
-        LocalDateTime oneWeekAgo = now.minusWeeks(1);
-        Date dateOneWeekAgo = Date.from(oneWeekAgo.atZone(ZoneId.systemDefault()).toInstant());// تبدیل LocalDateTime به Date
+        Article article2 = new Article(22, "Math", "Math is Math", "MAth is number", cat2);
+        LocalDate dateOneWeekAgo = now.minusWeeks(1);
         article2.setCreateDate(dateOneWeekAgo);
         article2.setLastUpdateDate(dateOneWeekAgo);
         article2.setPublishDate(dateOneWeekAgo);
@@ -66,9 +61,8 @@ public class Main {
         article2.setPublished(true);
         articles.add(article2);
 
-        Article article3 = new Article(33,"Java", "Java is Java", "Java is a kind of programming language", cat1);
-        LocalDateTime oneMonthAgo = now.minusMonths(1);
-        Date dateOneMonthAgo = Date.from(oneMonthAgo.atZone(ZoneId.systemDefault()).toInstant());// تبدیل LocalDateTime به Date
+        Article article3 = new Article(33, "Java", "Java is Java", "Java is a kind of programming language", cat1);
+        LocalDate dateOneMonthAgo = now.minusMonths(1);
         article3.setCreateDate(dateOneMonthAgo);
         article3.setLastUpdateDate(dateOneMonthAgo);
         article3.setPublishDate(dateOneMonthAgo);
@@ -76,9 +70,8 @@ public class Main {
         article3.setPublished(true);
         articles.add(article3);
 
-        Article article4 = new Article(44,"C++", "C++ is C++", "C++ is a kind of programming language", cat1);
-        LocalDateTime sixMonthAgo = now.minusMonths(6);
-        Date dateSixMonthAgo = Date.from(sixMonthAgo.atZone(ZoneId.systemDefault()).toInstant());// تبدیل LocalDateTime به Date
+        Article article4 = new Article(44, "C++", "C++ is C++", "C++ is a kind of programming language", cat1);
+        LocalDate dateSixMonthAgo = now.minusMonths(6);
         article4.setCreateDate(dateSixMonthAgo);
         article4.setLastUpdateDate(dateSixMonthAgo);
         article4.setPublishDate(dateSixMonthAgo);
@@ -86,9 +79,8 @@ public class Main {
         article4.setPublished(true);
         articles.add(article4);
 
-        Article article5 = new Article(55,"PHP", "PHP is PHP", "PHP is a kind of programming language", cat1);
-        LocalDateTime oneYearAgo = now.minusYears(1);
-        Date dateOneYearAgo = Date.from(oneYearAgo.atZone(ZoneId.systemDefault()).toInstant());// تبدیل LocalDateTime به Date
+        Article article5 = new Article(55, "PHP", "PHP is PHP", "PHP is a kind of programming language", cat1);
+        LocalDate dateOneYearAgo = now.minusYears(1);
         article5.setCreateDate(dateOneYearAgo);
         article5.setLastUpdateDate(dateOneYearAgo);
         article5.setPublishDate(dateOneYearAgo);
@@ -181,6 +173,45 @@ public class Main {
         }
     }
 
+    public static void filterArticleDashboard(Author author, Scanner scanner) {
+        System.out.println("Filter Article:");
+        System.out.println("(1) View All Published Articles");
+        System.out.println("(2) View Published Articles after 24 hours ago.");
+        System.out.println("(3) View Published Articles after last week.");
+        System.out.println("(4) View Published Articles after last month.");
+        System.out.println("(5) View Published Articles after six months.");
+        System.out.println("(6) View Published Articles after last year.");
+        System.out.println("(7) Back to authorDashboard.");
+
+        List<Article> allArticles = articleService.findAllArticles();
+        int choice = Integer.parseInt(scanner.next());
+        switch (choice) {
+            case 1:
+                author.viewArticles(allArticles);
+                break;
+            case 2:
+                author.viewArticlesPublishedAfter24HoursAgo(allArticles);
+                break;
+            case 3:
+                author.viewArticlesPublishedAfterOneWeekAgo(allArticles);
+                break;
+            case 4:
+                author.viewArticlesPublishedAfterOneMonthAgo(allArticles);
+                break;
+            case 5:
+                author.viewArticlesPublishedAfterSixMonthsAgo(allArticles);
+                break;
+            case 6:
+                author.viewArticlesPublishedAfterLastOneYearAgo(allArticles);
+                break;
+            case 7:
+                authorDashboard(author, scanner);
+                break;
+            default:
+                System.out.println("Invalid choice");
+        }
+    }
+
     public static void authorDashboard(Author author, Scanner scanner) {
         System.out.println("\nAuthor Dashboard:");
         System.out.println("(1) View My Articles");
@@ -193,7 +224,7 @@ public class Main {
         int choice = Integer.parseInt(scanner.next());
         switch (choice) {
             case 1:
-                author.viewArticles(allArticles);
+                filterArticleDashboard(author, scanner);
                 break;
             case 2:
                 editArticle(author, scanner);
