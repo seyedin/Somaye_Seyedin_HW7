@@ -1,10 +1,11 @@
 package articlesystem.model;
 
 import articlesystem.model.enums.ArticleStatus;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.ToString;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

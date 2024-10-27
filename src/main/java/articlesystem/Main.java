@@ -1,6 +1,5 @@
 package articlesystem;
 
-
 import articlesystem.model.*;
 import articlesystem.model.enums.ArticleStatus;
 import articlesystem.service.*;
@@ -184,13 +183,13 @@ public class Main {
         if (filterChoice == 1) {
             filterArticleDashboard(author, scanner);
         } else if (filterChoice == 2) {
-            filterCategoryDashboard(author, scanner);
+            filterCategoryDashboard(scanner);
         } else {
             System.out.println("Invalid choice");
         }
     }
 
-    public static void filterCategoryDashboard(Author author, Scanner scanner) {
+    public static void filterCategoryDashboard(Scanner scanner) {
         List<Article> allArticles = articleService.findAllArticles();
         List<Category> allCategories = categoryService.findAllCategory();
         System.out.println("Choose a category Id to filter by:");
@@ -202,7 +201,7 @@ public class Main {
 
         for (Category category : allCategories) {
             if (categoryId == category.getId()) {
-                author.viewArticlesPublishedByCategory(allArticles, category);
+                authorService.viewArticlesPublishedByCategory(allArticles, category);
             }
         }
     }
@@ -221,22 +220,22 @@ public class Main {
         int choice = Integer.parseInt(scanner.next());
         switch (choice) {
             case 1:
-                author.viewArticles(allArticles);
+                authorService.viewArticles(allArticles);
                 break;
             case 2:
-                author.viewArticlesPublishedAfter24HoursAgo(allArticles);
+                authorService.viewArticlesPublishedAfter24HoursAgo(allArticles);
                 break;
             case 3:
-                author.viewArticlesPublishedAfterOneWeekAgo(allArticles);
+                authorService.viewArticlesPublishedAfterOneWeekAgo(allArticles);
                 break;
             case 4:
-                author.viewArticlesPublishedAfterOneMonthAgo(allArticles);
+                authorService.viewArticlesPublishedAfterOneMonthAgo(allArticles);
                 break;
             case 5:
-                author.viewArticlesPublishedAfterSixMonthsAgo(allArticles);
+                authorService.viewArticlesPublishedAfterSixMonthsAgo(allArticles);
                 break;
             case 6:
-                author.viewArticlesPublishedAfterLastOneYearAgo(allArticles);
+                authorService.viewArticlesPublishedAfterLastOneYearAgo(allArticles);
                 break;
             case 7:
                 authorDashboard(author, scanner);
@@ -254,18 +253,16 @@ public class Main {
         System.out.println("(4) Change Password");
         System.out.println("(5) Logout");
 
-        List<Article> allArticles = articleService.findAllArticles();
         int choice = Integer.parseInt(scanner.next());
         switch (choice) {
             case 1:
                 filterMeno(author, scanner);
-                //  filterArticleDashboard(author, scanner);
                 break;
             case 2:
-                editArticle(author, scanner);
+                editArticle(scanner);
                 break;
             case 3:
-                addNewArticle(author, scanner);
+                addNewArticle(scanner);
                 break;
             case 4:
                 System.out.print("Enter new password: ");
@@ -283,7 +280,7 @@ public class Main {
         authorDashboard(author, scanner);
     }
 
-    public static void editArticle(Author author, Scanner scanner) {
+    public static void editArticle(Scanner scanner) {
         System.out.println("Enter Article ID to Edit:");
 
         List<Article> allArticles = articleService.findAllArticles();
@@ -304,13 +301,13 @@ public class Main {
             System.out.print("Enter new content: ");
             String newContent = scanner.next();
 
-            author.editArticle(article, newTitle, newBrief, newContent);
+            authorService.editArticle(article, newTitle, newBrief, newContent);
         } else {
             System.out.println("Article not found.");
         }
     }
 
-    public static void addNewArticle(Author author, Scanner scanner) {
+    public static void addNewArticle(Scanner scanner) {
         System.out.println("Adding a New Article:");
         System.out.print("Enter title: ");
         String title = scanner.next();
@@ -320,7 +317,7 @@ public class Main {
         String content = scanner.next();
 
         List<Category> allCategory = categoryService.findAllCategory();
-        // نمایش دسته‌بندی‌ها
+
         System.out.println("Select a category:");
         for (Category category : allCategory) {
             System.out.println(category.getId() + ": " + category.getTitle());
@@ -339,9 +336,8 @@ public class Main {
         List<Article> allArticles = articleService.findAllArticles();
         Article newArticle = new Article(allArticles.size() + 1, title, brief, content, selectedCategory);
 
-        // نمایش لیست تگ‌ها و افزودن تگ جدید
         System.out.println("Enter tags (comma separated). If the tag doesn't exist, it will be added:");
-        scanner.nextLine(); // مصرف خط جدید
+        scanner.nextLine();
         String tagInput = scanner.nextLine();
         String[] tagTitles = tagInput.split(",");
         for (String tagTitle : tagTitles) {
@@ -349,7 +345,7 @@ public class Main {
             newArticle.addTag(tag);
         }
 
-        author.submitArticle(newArticle);
+        authorService.submitArticle(newArticle);
         articleService.addArticle(newArticle);
 
         System.out.println("Article added successfully!");
@@ -403,14 +399,14 @@ public class Main {
 
         if (loggedInModerator != null) {
             System.out.println("Login successful!");
-            moderatorDashboard(loggedInModerator, scanner);
+            moderatorDashboard(scanner);
         } else {
             System.out.println("Invalid credentials");
             moderatorMenu(scanner);
         }
     }
 
-    public static void moderatorDashboard(Moderator moderator, Scanner scanner) {
+    public static void moderatorDashboard(Scanner scanner) {
         System.out.println("\nModerator Dashboard:");
         System.out.println("(1) Approve/Reject Articles");
         System.out.println("(2) Logout");
@@ -425,9 +421,9 @@ public class Main {
                         System.out.println("(1) Approve  (2) Reject");
                         int decision = Integer.parseInt(scanner.next());
                         if (decision == 1) {
-                            moderator.approveArticle(article);
+                            moderatorService.approveArticle(article);
                         } else if (decision == 2) {
-                            moderator.rejectArticle(article);
+                            moderatorService.rejectArticle(article);
                         }
                     }
                 }
@@ -439,8 +435,6 @@ public class Main {
             default:
                 System.out.println("Invalid choice");
         }
-
-        moderatorDashboard(moderator, scanner);
+        moderatorDashboard(scanner);
     }
-
 }

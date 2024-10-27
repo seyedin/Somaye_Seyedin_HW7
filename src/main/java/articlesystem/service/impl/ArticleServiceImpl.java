@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleServiceImpl implements ArticleService {
-
     private final ArticleRepository articleRepository = new ArticleRepositoryImpl();
 
     @Override

@@ -9,10 +9,6 @@ import java.util.List;
 
 public class TagServiceImpl implements TagService {
     private final TagRepository tagRepository = new TagRepositoryImpl();
-    @Override
-    public List<Tag> findAllTags() {
-        return tagRepository.findAllTags();
-    }
 
     @Override
     public void addTag(Tag tag) {

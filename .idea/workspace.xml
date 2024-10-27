@@ -4,12 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="078b2358-86f9-46d5-8929-4607df8e0095" name="Changes" comment="Added filter menu">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="078b2358-86f9-46d5-8929-4607df8e0095" name="Changes" comment="Added filter menu by Category &amp; Article">
       <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/model/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/model/Article.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/model/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/model/Author.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/model/Moderator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/model/Moderator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/model/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/model/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/ArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/ArticleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/AuthorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/AuthorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/ModeratorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/ModeratorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/TagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/TagRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/ArticleRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/ArticleRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/AuthorRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/AuthorRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/CategoryRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/CategoryRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/TagRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/TagRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/ArticleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/AuthorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/AuthorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/ModeratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/ModeratorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/TagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/ArticleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/ArticleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/AuthorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/AuthorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/CategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/ModeratorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/ModeratorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/TagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/TagServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +38,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/articlesystem/Main.java" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -100,7 +123,7 @@
       <workItem from="1730051044472" duration="38000" />
       <workItem from="1730051130180" duration="46000" />
       <workItem from="1730051182403" duration="253000" />
-      <workItem from="1730051471301" duration="7802000" />
+      <workItem from="1730051471301" duration="10853000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -134,17 +157,67 @@
       <option name="project" value="LOCAL" />
       <updated>1729980555780</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added filter menu by Category &amp; Article">
+      <option name="closed" value="true" />
+      <created>1730060596083</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730060596083</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="36f2f067-2c44-48b5-992f-d0a4cd4b1245" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="36f2f067-2c44-48b5-992f-d0a4cd4b1245">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="Added default articles" />
     <MESSAGE value="Added filter menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added filter menu" />
+    <MESSAGE value="Added filter menu by Category &amp; Article" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added filter menu by Category &amp; Article" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -156,12 +229,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/articlesystem/Main.java</url>
-          <line>377</line>
+          <line>373</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/articlesystem/Main.java</url>
-          <line>376</line>
+          <line>372</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

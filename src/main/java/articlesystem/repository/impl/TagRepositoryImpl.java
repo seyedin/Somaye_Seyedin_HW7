@@ -7,6 +7,7 @@ import articlesystem.repository.TagRepository;
 import java.util.List;
 
 public class TagRepositoryImpl implements TagRepository {
+
     @Override
     public List<Tag> findAllTags() {
         return Database.tags;

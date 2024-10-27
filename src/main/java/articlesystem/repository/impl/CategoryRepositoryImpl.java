@@ -7,6 +7,7 @@ import articlesystem.repository.CategoryRepository;
 import java.util.List;
 
 public class CategoryRepositoryImpl implements CategoryRepository {
+
     @Override
     public List<Category> findAllCategory() {
         return Database.categories;

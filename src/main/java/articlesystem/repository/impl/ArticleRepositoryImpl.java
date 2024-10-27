@@ -7,6 +7,7 @@ import articlesystem.repository.ArticleRepository;
 import java.util.List;
 
 public class ArticleRepositoryImpl implements ArticleRepository {
+
     @Override
     public List<Article> findAllArticles() {
         return Database.articles;

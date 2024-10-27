@@ -8,7 +8,6 @@ import articlesystem.service.CategoryService;
 import java.util.List;
 
 public class CategoryServiceImpl implements CategoryService {
-
     private final CategoryRepository categoryRepository = new CategoryRepositoryImpl();
 
     @Override
