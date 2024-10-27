@@ -5,6 +5,7 @@ import articlesystem.model.*;
 import articlesystem.model.enums.ArticleStatus;
 import articlesystem.service.*;
 import articlesystem.service.impl.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,6 @@ public class Main {
         startMenu();
     }
 
-
     public static void setupSampleData() {
         Category cat1 = new Category(1, "Technology", "Articles about technology.");
         Category cat2 = new Category(2, "Science", "Articles about science.");
@@ -42,7 +42,8 @@ public class Main {
         tagService.addTag(new Tag(2, "Science"));
 
         List<Article> articles = new ArrayList<>();
-        Article article1 = new Article(11, "Art", "Art is Art", "Art is paint", cat3);
+
+        Article article1 = new Article(11, "Paint", "Paint is Art", "Art is paint", cat3);
         LocalDate now = LocalDate.now();
         LocalDate date = now.minusDays(1);
         article1.setCreateDate(date);
@@ -173,6 +174,39 @@ public class Main {
         }
     }
 
+    public static void filterMeno(Author author, Scanner scanner) {
+        System.out.println("Would you like to filter by:");
+        System.out.println("(1) Publication Date");
+        System.out.println("(2) Category");
+        System.out.print("Your choice: ");
+
+        int filterChoice = Integer.parseInt(scanner.next());
+        if (filterChoice == 1) {
+            filterArticleDashboard(author, scanner);
+        } else if (filterChoice == 2) {
+            filterCategoryDashboard(author, scanner);
+        } else {
+            System.out.println("Invalid choice");
+        }
+    }
+
+    public static void filterCategoryDashboard(Author author, Scanner scanner) {
+        List<Article> allArticles = articleService.findAllArticles();
+        List<Category> allCategories = categoryService.findAllCategory();
+        System.out.println("Choose a category Id to filter by:");
+
+        for (Category category : allCategories) {
+            System.out.println("Id: " + category.getId() + ", Title: " + category.getTitle());
+        }
+        int categoryId = Integer.parseInt(scanner.next());
+
+        for (Category category : allCategories) {
+            if (categoryId == category.getId()) {
+                author.viewArticlesPublishedByCategory(allArticles, category);
+            }
+        }
+    }
+
     public static void filterArticleDashboard(Author author, Scanner scanner) {
         System.out.println("Filter Article:");
         System.out.println("(1) View All Published Articles");
@@ -224,7 +258,8 @@ public class Main {
         int choice = Integer.parseInt(scanner.next());
         switch (choice) {
             case 1:
-                filterArticleDashboard(author, scanner);
+                filterMeno(author, scanner);
+                //  filterArticleDashboard(author, scanner);
                 break;
             case 2:
                 editArticle(author, scanner);
@@ -250,6 +285,13 @@ public class Main {
 
     public static void editArticle(Author author, Scanner scanner) {
         System.out.println("Enter Article ID to Edit:");
+
+        List<Article> allArticles = articleService.findAllArticles();
+        for (Article article : allArticles) {
+            if (!article.isPublished()) {
+                System.out.println("Id: " + article.getId() + ", Title: " + article.getTitle());
+            }
+        }
         int articleId = Integer.parseInt(scanner.next());
         Article article = articleService.findArticleById(articleId);
 

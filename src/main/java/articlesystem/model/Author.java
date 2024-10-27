@@ -1,6 +1,7 @@
 package articlesystem.model;
 
 import articlesystem.model.enums.ArticleStatus;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -120,6 +121,17 @@ public class Author extends User {
                 if (article.getLastUpdateDate() != null) {
                     System.out.println("Last update date: " + article.getLastUpdateDate());
                 }
+                System.out.println("======================================");
+            }
+        }
+    }
+
+    public void viewArticlesPublishedByCategory(List<Article> articles, Category category) {
+        int count = 0;
+        for (int i = 0; i < articles.size(); i++) {
+            if (articles.get(i).getCategory().equals(category) && articles.get(i).isPublished()) {
+                count++;
+                System.out.println(count + "- " + "Title: " + articles.get(i).getTitle() + ", Brief: " + articles.get(i).getBrief() + ", Content: " + articles.get(i).getContent());
                 System.out.println("======================================");
             }
         }
