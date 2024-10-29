@@ -12,6 +12,5 @@ public class User {
 
     public void changePassword(String newPassword) {
         this.password = newPassword;
-        System.out.println("Password changed successfully");
     }
 }

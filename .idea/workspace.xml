@@ -4,32 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="078b2358-86f9-46d5-8929-4607df8e0095" name="Changes" comment="Added filter menu by Category &amp; Article">
+    <list default="true" id="078b2358-86f9-46d5-8929-4607df8e0095" name="Changes" comment="Refactor of some codes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/model/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/model/Article.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/model/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/model/Author.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/model/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/model/Moderator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/model/Moderator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/model/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/model/Tag.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/ArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/ArticleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/AuthorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/AuthorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/ModeratorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/ModeratorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/TagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/TagRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/ArticleRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/ArticleRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/AuthorRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/AuthorRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/CategoryRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/CategoryRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/TagRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/repository/impl/TagRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/ArticleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/AuthorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/AuthorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/ModeratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/ModeratorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/TagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/TagService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/ArticleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/ArticleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/AuthorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/AuthorServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/CategoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/ModeratorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/ModeratorServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/TagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/articlesystem/service/impl/TagServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,8 +18,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "seyedin"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/seyedin/Somaye_Seyedin_HW7.git",
+    "accountId": "5be1919a-6f60-4ac4-b7c9-b5a0693881d7"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/articlesystem/Main.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/articlesystem/Main.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -58,26 +49,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
-    &quot;Maven.articlehub7 [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.articlehub7 [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.articlehub7 [package].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/sanazseyedin/Downloads/JavaTask/mabani/src/homeworks/articlehub7/pom.xml&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/sanazseyedin/Downloads/JavaTask/mabani/src/homeworks/articlehub7/src/main/java/org/example/Main.java&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Debug",
+    "Maven.articlehub7 [clean].executor": "Run",
+    "Maven.articlehub7 [compile].executor": "Run",
+    "Maven.articlehub7 [package].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/sanazseyedin/Downloads/JavaTask/mabani/src/homeworks/articlehub7/pom.xml",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/sanazseyedin/Downloads/JavaTask/mabani/src/homeworks/articlehub7/src/main/java/org/example/Main.java",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java" />
@@ -123,7 +114,7 @@
       <workItem from="1730051044472" duration="38000" />
       <workItem from="1730051130180" duration="46000" />
       <workItem from="1730051182403" duration="253000" />
-      <workItem from="1730051471301" duration="10853000" />
+      <workItem from="1730051471301" duration="31325000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -165,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730060596083</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Refactor of some codes">
+      <option name="closed" value="true" />
+      <created>1730063794966</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1730063794966</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +216,8 @@
     <MESSAGE value="Added default articles" />
     <MESSAGE value="Added filter menu" />
     <MESSAGE value="Added filter menu by Category &amp; Article" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added filter menu by Category &amp; Article" />
+    <MESSAGE value="Refactor of some codes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor of some codes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -226,16 +226,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
           <line>13</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/articlesystem/Main.java</url>
-          <line>373</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/articlesystem/Main.java</url>
-          <line>372</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

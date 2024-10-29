@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class Main {
 
+    // upcasted;
     private static final AuthorService authorService = new AuthorServiceImpl();
     private static final ArticleService articleService = new ArticleServiceImpl();
     private static final ModeratorService moderatorService = new ModeratorServiceImpl();
@@ -25,6 +26,7 @@ public class Main {
         startMenu();
     }
 
+    // Create default data
     public static void setupSampleData() {
         Category cat1 = new Category(1, "Technology", "Articles about technology.");
         Category cat2 = new Category(2, "Science", "Articles about science.");
@@ -90,6 +92,7 @@ public class Main {
         articleService.addArticles(articles);
     }
 
+    // User role selection
     private static void startMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to the Article System. \nAre you an (1) Author or (2) Moderator?");
@@ -104,6 +107,7 @@ public class Main {
         }
     }
 
+    // authorMenu for registration, login, and viewing published articles
     public static void authorMenu(Scanner scanner) {
         System.out.println("\nAuthor Menu:");
         System.out.println("(1) Register");
@@ -130,6 +134,7 @@ public class Main {
         }
     }
 
+    // Register a new author, using the national code as the password
     public static void registerAuthor(Scanner scanner) {
         System.out.println("Register as an Author:");
         System.out.print("Enter username: ");
@@ -149,6 +154,7 @@ public class Main {
         authorMenu(scanner);
     }
 
+    //login author
     public static void loginAuthor(Scanner scanner) {
         System.out.print("Enter username: ");
         String username = scanner.next();
@@ -173,7 +179,8 @@ public class Main {
         }
     }
 
-    public static void filterMeno(Author author, Scanner scanner) {
+    // Filter articles based on publication date or category
+    public static void filterMenu(Author author, Scanner scanner) {
         System.out.println("Would you like to filter by:");
         System.out.println("(1) Publication Date");
         System.out.println("(2) Category");
@@ -189,6 +196,7 @@ public class Main {
         }
     }
 
+    // Filter articles based on category
     public static void filterCategoryDashboard(Scanner scanner) {
         List<Article> allArticles = articleService.findAllArticles();
         List<Category> allCategories = categoryService.findAllCategory();
@@ -206,6 +214,7 @@ public class Main {
         }
     }
 
+    // Filter articles based on publication date
     public static void filterArticleDashboard(Author author, Scanner scanner) {
         System.out.println("Filter Article:");
         System.out.println("(1) View All Published Articles");
@@ -245,6 +254,7 @@ public class Main {
         }
     }
 
+    //includes viewing and editing articles, and adding a new article. and chang password
     public static void authorDashboard(Author author, Scanner scanner) {
         System.out.println("\nAuthor Dashboard:");
         System.out.println("(1) View My Articles");
@@ -256,7 +266,7 @@ public class Main {
         int choice = Integer.parseInt(scanner.next());
         switch (choice) {
             case 1:
-                filterMeno(author, scanner);
+                filterMenu(author, scanner);
                 break;
             case 2:
                 editArticle(scanner);
@@ -265,8 +275,11 @@ public class Main {
                 addNewArticle(scanner);
                 break;
             case 4:
-                System.out.print("Enter new password: ");
+                System.out.println("Enter old password: ");
+                String oldPassword = scanner.next();
+                System.out.println("Enter new password: ");
                 String newPassword = scanner.next();
+                System.out.println("chang password is successful!");
                 author.changePassword(newPassword);
                 break;
             case 5:
@@ -280,6 +293,7 @@ public class Main {
         authorDashboard(author, scanner);
     }
 
+    // Editing an article by the author
     public static void editArticle(Scanner scanner) {
         System.out.println("Enter Article ID to Edit:");
 
@@ -307,6 +321,7 @@ public class Main {
         }
     }
 
+    // Adding a new article by the author
     public static void addNewArticle(Scanner scanner) {
         System.out.println("Adding a New Article:");
         System.out.print("Enter title: ");
@@ -351,6 +366,7 @@ public class Main {
         System.out.println("Article added successfully!");
     }
 
+    // Adding a new category
     public static Category addNewCategory(Scanner scanner) {
         List<Category> allCategory = categoryService.findAllCategory();
         System.out.print("Enter new category title: ");
@@ -363,6 +379,7 @@ public class Main {
         return newCategory;
     }
 
+    // Viewing published articles
     public static void viewPublishedArticles(Scanner scanner) {
         System.out.println("Published Articles:");
         List<Article> publishedArticles = articleService.getPublishedArticles();
@@ -381,6 +398,7 @@ public class Main {
         }
     }
 
+    //login moderator
     public static void moderatorMenu(Scanner scanner) {
         System.out.println("\nModerator Menu:");
         System.out.print("Enter username: ");
@@ -406,6 +424,7 @@ public class Main {
         }
     }
 
+    //moderator menu for Approve/Reject Articles and Logout
     public static void moderatorDashboard(Scanner scanner) {
         System.out.println("\nModerator Dashboard:");
         System.out.println("(1) Approve/Reject Articles");
@@ -435,6 +454,6 @@ public class Main {
             default:
                 System.out.println("Invalid choice");
         }
-        moderatorDashboard(scanner);
+        moderatorDashboard(scanner); // Repeat the moderator dashboard process.
     }
 }
