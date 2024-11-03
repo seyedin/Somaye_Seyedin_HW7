@@ -7,5 +7,6 @@ import java.util.List;
 public interface ModeratorRepository {
 
     List<Moderator> findAllModerators();
-    void addModerator(Moderator moderator);
+
+    void addUserAndModerator(Moderator moderator);
 }

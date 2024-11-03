@@ -4,7 +4,9 @@ import articlesystem.model.Article;
 import articlesystem.model.Author;
 import articlesystem.model.Category;
 import articlesystem.model.enums.ArticleStatus;
+import articlesystem.repository.ArticleRepository;
 import articlesystem.repository.AuthorRepository;
+import articlesystem.repository.impl.ArticleRepositoryImpl;
 import articlesystem.repository.impl.AuthorRepositoryImpl;
 import articlesystem.service.AuthorService;
 
@@ -13,6 +15,7 @@ import java.util.List;
 
 public class AuthorServiceImpl implements AuthorService {
     private final AuthorRepository authorRepository = new AuthorRepositoryImpl();
+    private final ArticleRepository articleRepository = new ArticleRepositoryImpl();
 
     @Override
     public List<Author> findAllAuthors(){
@@ -21,7 +24,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public void addAuthor(Author author){
-        authorRepository.addAuthor(author);
+        authorRepository.addUserAndAuthor(author);
     }
 
     @Override
@@ -142,14 +145,11 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public void viewArticlesPublishedByCategory(List<Article> articles, Category category) {
-        int count = 0;
-        for (int i = 0; i < articles.size(); i++) {
-            if (articles.get(i).getCategory().equals(category) && articles.get(i).isPublished()) {
-                count++;
-                System.out.println(count + "- " + "Title: " + articles.get(i).getTitle() + ", Brief: " + articles.get(i).getBrief() + ", Content: " + articles.get(i).getContent());
-                System.out.println("======================================");
-            }
+    public void viewArticlesPublishedByCategory(Category category) {
+        int categoryId = category.getId();
+        List<Article> articleList = articleRepository.findArticleByCategoryId(categoryId);
+        for (Article article : articleList) {
+            System.out.println("Title: " + article.getTitle() + ", Brief:  " + article.getBrief() + ", Content: " + article.getContent());
         }
     }
 
@@ -166,6 +166,5 @@ public class AuthorServiceImpl implements AuthorService {
     public void submitArticle(Article article) {
         article.setPublished(false);
         article.setStatus(ArticleStatus.PENDING);
-        System.out.println("Article submitted");
     }
 }

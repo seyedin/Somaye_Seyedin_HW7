@@ -3,6 +3,7 @@ package articlesystem.model;
 import articlesystem.model.enums.ArticleStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class Article {
     private int id;
@@ -18,9 +20,9 @@ public class Article {
     private String brief;
     private String content;
     private LocalDate createDate;
-    private boolean isPublished;
-    private LocalDate lastUpdateDate;
     private LocalDate publishDate;
+    private LocalDate lastUpdateDate;
+    private boolean isPublished;
     private ArticleStatus status;
     private Category category;
     private List<Tag> tags;

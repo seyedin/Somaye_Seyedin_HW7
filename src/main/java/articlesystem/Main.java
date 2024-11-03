@@ -1,12 +1,10 @@
 package articlesystem;
 
 import articlesystem.model.*;
-import articlesystem.model.enums.ArticleStatus;
 import articlesystem.service.*;
 import articlesystem.service.impl.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,77 +15,11 @@ public class Main {
     private static final ModeratorService moderatorService = new ModeratorServiceImpl();
     private static final CategoryService categoryService = new CategoryServiceImpl();
     private static final TagService tagService = new TagServiceImpl();
+    private static final UserService userService = new UserServiceImpl();
 
 
     public static void main(String[] args) {
-        // create default data
-        setupSampleData();
         startMenu();
-    }
-
-    public static void setupSampleData() {
-        Category cat1 = new Category(1, "Technology", "Articles about technology.");
-        Category cat2 = new Category(2, "Science", "Articles about science.");
-        Category cat3 = new Category(3, "Art", "Articles about art.");
-        categoryService.addCategory(cat1);
-        categoryService.addCategory(cat2);
-        categoryService.addCategory(cat3);
-
-
-        Moderator moderator = new Moderator(1, "admin", "admin123");
-        moderatorService.addModerator(moderator);
-
-        tagService.addTag(new Tag(1, "Tech"));
-        tagService.addTag(new Tag(2, "Science"));
-
-        List<Article> articles = new ArrayList<>();
-
-        Article article1 = new Article(11, "Paint", "Paint is Art", "Art is paint", cat3);
-        LocalDate now = LocalDate.now();
-        LocalDate date = now.minusDays(1);
-        article1.setCreateDate(date);
-        article1.setLastUpdateDate(date);
-        article1.setPublishDate(date);
-        article1.setStatus(ArticleStatus.APPROVED);
-        article1.setPublished(true);
-        articles.add(article1);
-
-        Article article2 = new Article(22, "Math", "Math is Math", "MAth is number", cat2);
-        LocalDate dateOneWeekAgo = now.minusWeeks(1);
-        article2.setCreateDate(dateOneWeekAgo);
-        article2.setLastUpdateDate(dateOneWeekAgo);
-        article2.setPublishDate(dateOneWeekAgo);
-        article2.setStatus(ArticleStatus.APPROVED);
-        article2.setPublished(true);
-        articles.add(article2);
-
-        Article article3 = new Article(33, "Java", "Java is Java", "Java is a kind of programming language", cat1);
-        LocalDate dateOneMonthAgo = now.minusMonths(1);
-        article3.setCreateDate(dateOneMonthAgo);
-        article3.setLastUpdateDate(dateOneMonthAgo);
-        article3.setPublishDate(dateOneMonthAgo);
-        article3.setStatus(ArticleStatus.APPROVED);
-        article3.setPublished(true);
-        articles.add(article3);
-
-        Article article4 = new Article(44, "C++", "C++ is C++", "C++ is a kind of programming language", cat1);
-        LocalDate dateSixMonthAgo = now.minusMonths(6);
-        article4.setCreateDate(dateSixMonthAgo);
-        article4.setLastUpdateDate(dateSixMonthAgo);
-        article4.setPublishDate(dateSixMonthAgo);
-        article4.setStatus(ArticleStatus.APPROVED);
-        article4.setPublished(true);
-        articles.add(article4);
-
-        Article article5 = new Article(55, "PHP", "PHP is PHP", "PHP is a kind of programming language", cat1);
-        LocalDate dateOneYearAgo = now.minusYears(1);
-        article5.setCreateDate(dateOneYearAgo);
-        article5.setLastUpdateDate(dateOneYearAgo);
-        article5.setPublishDate(dateOneYearAgo);
-        article5.setStatus(ArticleStatus.APPROVED);
-        article5.setPublished(true);
-        articles.add(article5);
-        articleService.addArticles(articles);
     }
 
     private static void startMenu() {
@@ -105,11 +37,10 @@ public class Main {
     }
 
     public static void authorMenu(Scanner scanner) {
-        System.out.println("\nAuthor Menu:");
+        System.out.println("Author Menu:");
         System.out.println("(1) Register");
         System.out.println("(2) Login");
-        System.out.println("(3) View All Published Articles");
-        System.out.println("(4) Exit");
+        System.out.println("(3) Exit");
 
         int choice = Integer.parseInt(scanner.next());
         switch (choice) {
@@ -120,9 +51,6 @@ public class Main {
                 loginAuthor(scanner);
                 break;
             case 3:
-                viewPublishedArticles(scanner);
-                break;
-            case 4:
                 System.exit(0);
                 break;
             default:
@@ -136,13 +64,21 @@ public class Main {
         String username = scanner.next();
         System.out.print("Enter national code: ");
         String nationalCode = scanner.next();
-        System.out.print("Enter birthday (YYYY-MM-DD): ");
-        String birthday = scanner.next();
+        LocalDate birthDate = null;
+        do {
+            System.out.print("Enter birthday (YYYY-MM-DD): ");
+            String birthday = scanner.next();
+            try {
+                birthDate = LocalDate.parse(birthday); // convert String to LocalDate
+            } catch (Exception e) {
+                System.out.println("Invalid birthday");
+            }
+        } while (birthDate == null);
 
         List<Author> allAuthors = authorService.findAllAuthors();
 
         // ثبت کد ملی به عنوان رمز عبور
-        Author newAuthor = new Author(allAuthors.size() + 1, username, nationalCode, birthday, nationalCode);
+        Author newAuthor = new Author(allAuthors.size() + 1, username, nationalCode, birthDate, nationalCode);
         authorService.addAuthor(newAuthor);
 
         System.out.println("Registration successful! \nYour password is your national code.");
@@ -175,14 +111,17 @@ public class Main {
 
     public static void filterMeno(Author author, Scanner scanner) {
         System.out.println("Would you like to filter by:");
-        System.out.println("(1) Publication Date");
-        System.out.println("(2) Category");
+        System.out.println("(1) View All Published/Rejected/Pending Articles");
+        System.out.println("(2) Publication Date");
+        System.out.println("(3) Category");
         System.out.print("Your choice: ");
 
         int filterChoice = Integer.parseInt(scanner.next());
         if (filterChoice == 1) {
-            filterArticleDashboard(author, scanner);
+            viewPublishedArticles(author, scanner);
         } else if (filterChoice == 2) {
+            filterArticleDashboard(author, scanner);
+        } else if (filterChoice == 3) {
             filterCategoryDashboard(scanner);
         } else {
             System.out.println("Invalid choice");
@@ -190,7 +129,6 @@ public class Main {
     }
 
     public static void filterCategoryDashboard(Scanner scanner) {
-        List<Article> allArticles = articleService.findAllArticles();
         List<Category> allCategories = categoryService.findAllCategory();
         System.out.println("Choose a category Id to filter by:");
 
@@ -201,7 +139,7 @@ public class Main {
 
         for (Category category : allCategories) {
             if (categoryId == category.getId()) {
-                authorService.viewArticlesPublishedByCategory(allArticles, category);
+                authorService.viewArticlesPublishedByCategory(category);
             }
         }
     }
@@ -216,7 +154,7 @@ public class Main {
         System.out.println("(6) View Published Articles after last year.");
         System.out.println("(7) Back to authorDashboard.");
 
-        List<Article> allArticles = articleService.findAllArticles();
+        List<Article> allArticles = articleService.findAllArticlesByAuthorId(author.getId());
         int choice = Integer.parseInt(scanner.next());
         switch (choice) {
             case 1:
@@ -259,15 +197,15 @@ public class Main {
                 filterMeno(author, scanner);
                 break;
             case 2:
-                editArticle(scanner);
+                editArticle(scanner, author);
                 break;
             case 3:
-                addNewArticle(scanner);
+                addNewArticle(scanner, author.getId());
                 break;
             case 4:
                 System.out.print("Enter new password: ");
                 String newPassword = scanner.next();
-                author.changePassword(newPassword);
+                userService.updatePassword(author.getId(), newPassword);
                 break;
             case 5:
                 System.out.println("Logged out!");
@@ -280,10 +218,10 @@ public class Main {
         authorDashboard(author, scanner);
     }
 
-    public static void editArticle(Scanner scanner) {
+    public static void editArticle(Scanner scanner, Author author) {
         System.out.println("Enter Article ID to Edit:");
 
-        List<Article> allArticles = articleService.findAllArticles();
+        List<Article> allArticles = articleService.findAllArticlesByAuthorId(author.getId());
         for (Article article : allArticles) {
             if (!article.isPublished()) {
                 System.out.println("Id: " + article.getId() + ", Title: " + article.getTitle());
@@ -301,13 +239,13 @@ public class Main {
             System.out.print("Enter new content: ");
             String newContent = scanner.next();
 
-            authorService.editArticle(article, newTitle, newBrief, newContent);
+            articleService.updateArticle(article.getId(), newTitle, newBrief, newContent);
         } else {
             System.out.println("Article not found.");
         }
     }
 
-    public static void addNewArticle(Scanner scanner) {
+    public static void addNewArticle(Scanner scanner, int authorId) {
         System.out.println("Adding a New Article:");
         System.out.print("Enter title: ");
         String title = scanner.next();
@@ -333,7 +271,7 @@ public class Main {
             selectedCategory = allCategory.get(categoryId - 1);
         }
 
-        List<Article> allArticles = articleService.findAllArticles();
+        List<Article> allArticles = articleService.findAllArticlesByAuthorId(authorId);
         Article newArticle = new Article(allArticles.size() + 1, title, brief, content, selectedCategory);
 
         System.out.println("Enter tags (comma separated). If the tag doesn't exist, it will be added:");
@@ -346,38 +284,43 @@ public class Main {
         }
 
         authorService.submitArticle(newArticle);
-        articleService.addArticle(newArticle);
+        articleService.addArticle(newArticle, authorId, selectedCategory.getId());
 
         System.out.println("Article added successfully!");
     }
 
     public static Category addNewCategory(Scanner scanner) {
-        List<Category> allCategory = categoryService.findAllCategory();
         System.out.print("Enter new category title: ");
         String newCategoryTitle = scanner.next();
         System.out.print("Enter new category description: ");
         String newCategoryDescription = scanner.next();
 
-        Category newCategory = new Category(allCategory.size() + 1, newCategoryTitle, newCategoryDescription);
-        categoryService.addCategory(newCategory);
-        return newCategory;
+        Category newCategory = new Category();
+        newCategory.setTitle(newCategoryTitle);
+        newCategory.setDescription(newCategoryDescription);
+        Category category = categoryService.addCategory(newCategory);
+        return category;
     }
 
-    public static void viewPublishedArticles(Scanner scanner) {
-        System.out.println("Published Articles:");
-        List<Article> publishedArticles = articleService.getPublishedArticles();
-        for (int i = 0; i < publishedArticles.size(); i++) {
-            Article article = publishedArticles.get(i);
-            System.out.println((i + 1) + ". Title: " + article.getTitle() + ", Brief: " + article.getBrief());
-        }
-
-        System.out.println("Enter the number of the article you want to view in detail, or 0 to go back:");
+    public static void viewPublishedArticles(Author author, Scanner scanner) {
+        List<Article> publishedArticles = articleService.getAllArticlesByUserId(author.getId());
+        if (publishedArticles.isEmpty()) {
+            System.out.println("No articles found.");
+            authorDashboard(author, scanner);
+        } else {
+            System.out.println("All Published/Rejected/Pending Articles: ");
+            for (int i = 0; i < publishedArticles.size(); i++) {
+                Article article = publishedArticles.get(i);
+                System.out.println((i + 1) + ". Title: " + article.getTitle() + ", Brief: " + article.getBrief() + ", Status: " + article.getStatus());
+            }
+            System.out.println("Enter the number of the article you want to view in detail, or 0 to go back:");
         int choice = Integer.parseInt(scanner.next());
         if (choice > 0 && choice <= publishedArticles.size()) {
             Article selectedArticle = publishedArticles.get(choice - 1);
             System.out.println("Title: " + selectedArticle.getTitle());
             System.out.println("Brief: " + selectedArticle.getBrief());
             System.out.println("Content: " + selectedArticle.getContent());
+        }
         }
     }
 
@@ -414,9 +357,8 @@ public class Main {
         int choice = Integer.parseInt(scanner.next());
         switch (choice) {
             case 1:
-                List<Article> allArticles = articleService.findAllArticles();
+                List<Article> allArticles = articleService.findAllPendingArticles();
                 for (Article article : allArticles) {
-                    if (article.getStatus().equals(ArticleStatus.PENDING)) {
                         System.out.println("Article ID: " + article.getId() + ", Title: " + article.getTitle());
                         System.out.println("(1) Approve  (2) Reject");
                         int decision = Integer.parseInt(scanner.next());
@@ -425,7 +367,6 @@ public class Main {
                         } else if (decision == 2) {
                             moderatorService.rejectArticle(article);
                         }
-                    }
                 }
                 break;
             case 2:

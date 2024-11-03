@@ -7,5 +7,6 @@ import java.util.List;
 public interface CategoryRepository {
 
     List<Category> findAllCategory();
-    void addCategory(Category category);
+
+    Category addCategory(Category category);
 }

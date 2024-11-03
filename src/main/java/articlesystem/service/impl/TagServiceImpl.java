@@ -11,8 +11,8 @@ public class TagServiceImpl implements TagService {
     private final TagRepository tagRepository = new TagRepositoryImpl();
 
     @Override
-    public void addTag(Tag tag) {
-        tagRepository.addTag(tag);
+    public Tag addTag(Tag tag) {
+        return tagRepository.addTag(tag);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class TagServiceImpl implements TagService {
             }
         }
         Tag newTag = new Tag(allTags.size() + 1, tagTitle);
-        addTag(newTag);
-        return newTag;
+        Tag tag = addTag(newTag);
+        return tag;
     }
 }

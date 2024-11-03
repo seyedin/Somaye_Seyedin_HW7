@@ -24,7 +24,7 @@ public interface AuthorService {
 
     void viewArticlesPublishedAfterLastOneYearAgo(List<Article> articles);
 
-    void viewArticlesPublishedByCategory(List<Article> articles, Category category);
+    void viewArticlesPublishedByCategory(Category category);
 
     void editArticle(Article article, String newTitle, String newBrief, String newContent);
 

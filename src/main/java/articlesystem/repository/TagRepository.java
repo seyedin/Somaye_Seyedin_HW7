@@ -7,5 +7,6 @@ import java.util.List;
 public interface TagRepository {
 
     List<Tag> findAllTags();
-    void addTag(Tag category);
+
+    Tag addTag(Tag category);
 }

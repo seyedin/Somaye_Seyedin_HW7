@@ -5,32 +5,24 @@ import articlesystem.repository.ArticleRepository;
 import articlesystem.repository.impl.ArticleRepositoryImpl;
 import articlesystem.service.ArticleService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepository articleRepository = new ArticleRepositoryImpl();
 
     @Override
-    public void addArticle(Article article) {
-        articleRepository.addArticle(article);
+    public void addArticle(Article article, int authorId, int categoryId) {
+        articleRepository.addArticle(article, authorId, categoryId);
     }
 
     @Override
-    public List<Article> getPublishedArticles() {
-        List<Article> publishedArticles = new ArrayList<>();
-        List<Article> allArticles = articleRepository.findAllArticles();
-        for (Article article : allArticles) {
-            if (article.isPublished()) {
-                publishedArticles.add(article);
-            }
-        }
-        return publishedArticles;
+    public List<Article> getAllArticlesByUserId(int authorId) {
+        return articleRepository.findAllArticlesByAuthorId(authorId);
     }
 
     @Override
-    public List<Article> findAllArticles() {
-     return   articleRepository.findAllArticles();
+    public List<Article> findAllArticlesByAuthorId(int authorId) {
+        return articleRepository.findAllArticlesByAuthorId(authorId);
 
     }
 
@@ -40,7 +32,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void addArticles(List<Article> articles) {
-       articleRepository.addArticles(articles);
+    public List<Article> findAllPendingArticles() {
+        return articleRepository.findAllPendingArticles();
     }
+
+    @Override
+    public boolean updateArticle(int articleId, String newTitle, String newBrief, String newContent) {
+        return articleRepository.updateArticle(articleId, newTitle, newBrief, newContent);
+    }
+
 }

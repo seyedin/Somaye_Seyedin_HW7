@@ -6,9 +6,15 @@ import java.util.List;
 
 public interface ArticleService {
 
-    void addArticle(Article article);
-    List<Article> getPublishedArticles();
-    List<Article> findAllArticles();
+    void addArticle(Article article, int authorId, int categoryId);
+
+    List<Article> getAllArticlesByUserId(int authorId);
+
+    List<Article> findAllArticlesByAuthorId(int authorId);
     Article findArticleById(int id);
-    void addArticles(List<Article> articles);
+
+    List<Article> findAllPendingArticles();
+
+    boolean updateArticle(int articleId, String newTitle, String newBrief, String newContent);
+
 }
